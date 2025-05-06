@@ -1,0 +1,24 @@
+# Visual Studio and MSVC specific
+*.obj
+*.pdb
+*.ilk
+*.exe
+*.dll
+*.lib
+*.ncb
+*.suo
+*.VC.db
+*.sdf
+*.opendb
+*.vs*
+[Bb]uild*/
+[Dd]ebug*/
+[Rr]elease*/
+*.[Cc]ache
+
+# User-specific files
+*.user
+
+# OS generated files
+.DS_Store
+Thumbs.db 
