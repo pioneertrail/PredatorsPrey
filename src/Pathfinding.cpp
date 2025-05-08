@@ -10,6 +10,13 @@ int manhattan_distance(const Vec2D& p1, const Vec2D& p2) {
     return std::abs(p1.x - p2.x) + std::abs(p1.y - p2.y);
 }
 
+// Calculates squared Euclidean distance between two points (avoids sqrt for efficiency).
+int squared_distance(const Vec2D& p1, const Vec2D& p2) {
+    int dx = p1.x - p2.x;
+    int dy = p1.y - p2.y;
+    return dx * dx + dy * dy;
+}
+
 // Helper function for find_path to check walkability within Pathfinding.cpp context
 static bool is_path_walkable(int r, int c, int world_width, int world_height, const std::unordered_set<Vec2D>& obstacles) {
     if (r < 0 || r >= world_height || c < 0 || c >= world_width) {
@@ -43,7 +50,11 @@ std::vector<Vec2D> find_path(
 
     open_set.push(start_node);
 
-    const Vec2D neighbors_offset[] = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}}; // Cardinal directions
+    // Add diagonal movement options for more efficient pathfinding
+    const Vec2D neighbors_offset[] = {
+        {0, 1}, {0, -1}, {1, 0}, {-1, 0},  // Cardinal directions
+        {1, 1}, {1, -1}, {-1, 1}, {-1, -1} // Diagonal directions
+    };
 
     while (!open_set.empty()) {
         AStarNode current = open_set.top();

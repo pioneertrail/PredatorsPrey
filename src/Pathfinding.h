@@ -30,6 +30,9 @@ struct AStarNode {
 // Calculates Manhattan distance between two points.
 int manhattan_distance(const Vec2D& p1, const Vec2D& p2);
 
+// Calculates squared Euclidean distance between two points (avoids sqrt for efficiency).
+int squared_distance(const Vec2D& p1, const Vec2D& p2);
+
 // Finds a path from start to goal using A* algorithm.
 // Returns a vector of Vec2D points representing the path (including start, excluding goal if goal is the last step taken from).
 // Returns an empty vector if no path is found.
