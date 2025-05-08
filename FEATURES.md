@@ -47,3 +47,7 @@ This document lists the core features implemented in the simulation.
 
 *   **Direct MSVC Compilation:** Uses a simple Windows batch script (`compile.bat`) to invoke `cl.exe` directly, setting necessary include paths and compiler flags.
 *   **No External Dependencies (beyond C++17/Standard Library):** Relies only on standard C++ libraries and console capabilities. 
+
+## Debugging
+
+*   **Toggleable Path Display:** Pressing 'p' during the simulation toggles the visualization of the `currentPath` for all sprites. Paths are rendered as cyan '.' characters on empty floor or safe zone tiles. 

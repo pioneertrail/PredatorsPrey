@@ -4,6 +4,7 @@
 #include <vector>
 #include <unordered_set> // For passing obstacles
 #include "Vec2D.h"       // For Vec2D struct
+#include "PathfindingHelpers.h" // For distance and line of sight functions
 
 // --- A* Pathfinding Data Structures ---
 struct AStarNode {
@@ -27,12 +28,6 @@ struct AStarNode {
 
 // --- A* Pathfinding Function Declarations ---
 
-// Calculates Manhattan distance between two points.
-int manhattan_distance(const Vec2D& p1, const Vec2D& p2);
-
-// Calculates squared Euclidean distance between two points (avoids sqrt for efficiency).
-int squared_distance(const Vec2D& p1, const Vec2D& p2);
-
 // Finds a path from start to goal using A* algorithm.
 // Returns a vector of Vec2D points representing the path (including start, excluding goal if goal is the last step taken from).
 // Returns an empty vector if no path is found.
@@ -44,14 +39,23 @@ std::vector<Vec2D> find_path(
     int world_height
 );
 
-// Checks for a clear line of sight between two points, considering obstacles.
-// Returns true if LoS is clear, false otherwise.
-bool has_line_of_sight(
+// For backward compatibility - delegates to PathfindingHelpers
+inline int manhattan_distance(const Vec2D& p1, const Vec2D& p2) {
+    return PathfindingHelpers::manhattan_distance(p1, p2);
+}
+
+inline int squared_distance(const Vec2D& p1, const Vec2D& p2) {
+    return PathfindingHelpers::squared_distance(p1, p2);
+}
+
+inline bool has_line_of_sight(
     const Vec2D& start,
     const Vec2D& end,
     const std::unordered_set<Vec2D>& obstacles,
     int world_width,
     int world_height
-);
+) {
+    return PathfindingHelpers::has_line_of_sight(start, end, obstacles, world_width, world_height);
+}
 
 #endif // PATHFINDING_H 

@@ -19,7 +19,8 @@ namespace Renderer {
         int current_step, // Added for displaying progress
         int max_steps,    // Added for displaying progress
         std::vector<std::string>& previous_display_rows, // Pass state by ref for now
-        bool& first_frame                          // Pass state by ref for now
+        bool& first_frame,                          // Pass state by ref for now
+        bool showPaths // Added debug flag
     );
 
 } // namespace Renderer

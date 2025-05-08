@@ -15,10 +15,6 @@ set OUTPUT_EXE=%PROJECT_NAME%.exe
 REM Include the 'src' directory for header files
 set INCLUDE_PATHS=/I"src"
 
-REM DEBUG: List all cpp files to verify they exist
-echo DEBUG: Listing all cpp files...
-dir /b src\*.cpp
-
 REM Explicitly list all source files
 set SOURCE_FILES=^
 src\main.cpp ^
@@ -40,18 +36,6 @@ echo Compiling %PROJECT_NAME%...
 echo Files to compile:
 echo %SOURCE_FILES%
 
-REM Try compiling each file individually to see if any fail
-echo Testing individual compilation...
-for %%F in (%SOURCE_FILES%) do (
-    echo Compiling %%F...
-    cl.exe /c /EHsc /std:c++17 /W4 /Zi %INCLUDE_PATHS% %%F
-    if %ERRORLEVEL% NEQ 0 (
-        echo ERROR compiling %%F
-        goto :end
-    )
-)
-
-REM Try full compilation
 cl.exe /EHsc /std:c++17 /W4 /Zi %INCLUDE_PATHS% %SOURCE_FILES% /link /OUT:%OUTPUT_EXE%
 
 echo.
@@ -67,6 +51,5 @@ if %ERRORLEVEL% EQU 0 (
     echo Compilation failed with error code %ERRORLEVEL%
 )
 
-:end
 echo.
 echo Script finished. 

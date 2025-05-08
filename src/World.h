@@ -13,6 +13,8 @@ struct World {
     const int height = 20; // Kept the same height
     const char obstacleChar = '#';
     const std::string obstacleColor = Color::WHITE;
+    const char safeZoneChar = '~'; // Character for safe zone tiles
+    const std::string safeZoneColor = Color::GREEN; // Color for safe zone tiles
 
     // Data
     std::unordered_set<Vec2D> obstacles;
